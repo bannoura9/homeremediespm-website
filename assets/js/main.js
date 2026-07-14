@@ -70,6 +70,34 @@
     });
   }
 
+  /* Free Rental Analysis form -> pre-filled email */
+  var rental = document.getElementById("rentalForm");
+  if (rental) {
+    rental.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var d = new FormData(rental);
+      var name = (d.get("raName") || "").trim();
+      var addr = (d.get("raAddress") || "").trim();
+      var email = (d.get("raEmail") || "").trim();
+      var phone = (d.get("raPhone") || "").trim();
+      if (!name || !addr || !email) return;
+      var body =
+        "New FREE RENTAL ANALYSIS request:\n\n" +
+        "Property address: " + addr + "\n" +
+        "Name: " + name + "\n" +
+        "Phone: " + phone + "\n" +
+        "Email: " + email + "\n";
+      var href =
+        "mailto:homeremediespm@gmail.com" +
+        "?subject=" + encodeURIComponent("Free rental analysis — " + addr) +
+        "&body=" + encodeURIComponent(body);
+      window.location.href = href;
+      var s = document.getElementById("rentalStatus");
+      if (s) { s.textContent = "Opening your email app… or just call (720) 722-0357. We'll be in touch within one business day."; s.style.color = "var(--forest)"; }
+      if (typeof gtag === "function") gtag("event", "generate_lead", { form: "rental_analysis" });
+    });
+  }
+
   /* Footer year */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();

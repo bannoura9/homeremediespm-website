@@ -113,7 +113,7 @@
         <h1>Top Tenants. Top Rent.<br><em>Treated like our own.</em></h1>
         <p class="hero__sub">Full-service property management and real estate for the Arvada &amp; Denver metro. Where excellence meets management — let us handle our expertise while you focus on yours.</p>
         <div class="hero__actions">
-          <a class="btn btn--gold btn--lg" href="contact.html">Get a free consultation
+          <a class="btn btn--gold btn--lg" href="#rental-analysis">Get your free rental analysis
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a class="btn btn--light btn--lg" href="management.html">Explore services</a>
@@ -150,6 +150,45 @@
     <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg> Short-term rental ready</div>
   </div>
 </div>
+
+<!-- ============ FREE RENTAL ANALYSIS ============ -->
+<section class="rental" id="rental-analysis">
+  <div class="container">
+    <div class="rental__grid">
+      <div class="rental__intro reveal">
+        <span class="eyebrow center-line" style="color:var(--gold-soft)">Free · No obligation</span>
+        <h2>What's your property worth as a rental?</h2>
+        <p>Get a free, no-obligation rental analysis from a local expert. We'll tell you the rent your home can command in today's Arvada &amp; Denver market — and exactly how we'd get you there.</p>
+        <ul class="rental__perks">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Data-backed market rent estimate</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Tips to boost your return</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Zero pressure — real advice from owners who invest</li>
+        </ul>
+      </div>
+      <div class="rental__card reveal d1">
+        <h3>Get my free rental analysis</h3>
+        <form id="rentalForm" novalidate>
+          <label>Property address
+            <input type="text" name="raAddress" placeholder="123 Main St, Arvada, CO" autocomplete="street-address" required>
+          </label>
+          <div class="rental__row">
+            <label>Your name
+              <input type="text" name="raName" placeholder="Full name" autocomplete="name" required>
+            </label>
+            <label>Phone
+              <input type="tel" name="raPhone" placeholder="(720) 000-0000" autocomplete="tel">
+            </label>
+          </div>
+          <label>Email
+            <input type="email" name="raEmail" placeholder="you@email.com" autocomplete="email" required>
+          </label>
+          <button type="submit" class="btn btn--gold btn--block btn--lg">Get my free analysis</button>
+          <p class="rental__fine" id="rentalStatus">We'll reply within one business day. No spam, ever.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ SERVICES ============ -->
 <section class="section" id="services">
@@ -207,14 +246,52 @@
   </div>
 </section>
 
+<!-- ============ THE PROMISE / GUARANTEES ============ -->
+<section class="section section--tight" id="promise">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow center-line">The Home Remedies Promise</span>
+      <h2 class="h-lead">Management you can walk away from — but won't want to</h2>
+      <p>We earn your business every month. That confidence is built into how we work.</p>
+    </div>
+    <div class="grid grid-4 promises" style="margin-top:2.8rem">
+      <article class="promise reveal">
+        <div class="promise__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 7 17l-4-4"/><path d="M22 10 13.5 18.5 11 16"/></svg></div>
+        <h3>No-penalty cancellation</h3>
+        <p>Month-to-month management with <b>no long lock-in and no termination fee</b>. Stay because we're great, not because you're stuck.</p>
+      </article>
+      <article class="promise reveal d1">
+        <div class="promise__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V5l-8-3z"/></svg></div>
+        <h3>Transparent pricing</h3>
+        <p>Clear, published rates — <b>no junk fees, no surprises</b>. You always know exactly what you're paying and why.</p>
+      </article>
+      <article class="promise reveal d2">
+        <div class="promise__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>24/7 response</h3>
+        <p>A real <b>emergency maintenance line</b>, always on. Your tenants are cared for, and small issues never become big ones.</p>
+      </article>
+      <article class="promise reveal d3">
+        <div class="promise__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01"/></svg></div>
+        <h3>Owner-operated care</h3>
+        <p>Your property is handled by <b>owners who invest themselves</b> — treated with the same care we give our own.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ STATS BAND ============ -->
 <section class="band section--tight">
   <div class="container">
     <div class="grid grid-4">
-      <div class="stat reveal"><b>2019</b><span>Serving Denver metro since</span></div>
+      <div class="stat reveal"><b>Since 2019</b><span>Serving the Denver metro</span></div>
       <div class="stat reveal d1"><b>24/7</b><span>Emergency maintenance line</span></div>
-      <div class="stat reveal d2"><b>3</b><span>Property types managed</span></div>
-      <div class="stat reveal d3"><b>100%</b><span>Focused on your success</span></div>
+      <div class="stat reveal d2"><b>5★</b><span>Rated by owners &amp; tenants</span></div>
+      <div class="stat reveal d3"><b>6</b><span>Cities served across the metro</span></div>
+    </div>
+    <div class="trustbadges reveal">
+      <span class="trustbadges__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V5l-8-3z"/></svg> Licensed Colorado real estate</span>
+      <span class="trustbadges__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg> Family-owned &amp; operated</span>
+      <span class="trustbadges__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Real, verified client reviews</span>
     </div>
   </div>
 </section>
@@ -341,6 +418,25 @@
   </div>
 </section>
 
+<!-- ============ AREAS WE SERVE ============ -->
+<section class="section section--tight" id="areas">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow center-line">Areas we serve</span>
+      <h2 class="h-lead">Local experts across the Denver metro</h2>
+      <p>Family-owned and based in Arvada — with boots-on-the-ground knowledge of every market we manage. Find your city:</p>
+    </div>
+    <div class="arealinks reveal" style="margin-top:2.4rem">
+      <a class="arealink" href="property-management-arvada.html"><b>Arvada</b><span>Our home base</span></a>
+      <a class="arealink" href="property-management-westminster.html"><b>Westminster</b><span>Denver &amp; Boulder</span></a>
+      <a class="arealink" href="property-management-wheat-ridge.html"><b>Wheat Ridge</b><span>Character &amp; convenience</span></a>
+      <a class="arealink" href="property-management-broomfield.html"><b>Broomfield</b><span>The tech corridor</span></a>
+      <a class="arealink" href="property-management-golden.html"><b>Golden</b><span>Where the foothills begin</span></a>
+      <a class="arealink" href="property-management-denver.html"><b>Denver</b><span>The heart of the metro</span></a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CTA ============ -->
 <section class="section" style="padding-top:0">
   <div class="container">
@@ -383,6 +479,17 @@
           <li><a href="buy-sell.html">Buying &amp; Selling</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="management.html#optimize">Investment Optimization</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Areas we serve</h4>
+        <ul>
+          <li><a href="property-management-arvada.html">Arvada</a></li>
+          <li><a href="property-management-westminster.html">Westminster</a></li>
+          <li><a href="property-management-wheat-ridge.html">Wheat Ridge</a></li>
+          <li><a href="property-management-broomfield.html">Broomfield</a></li>
+          <li><a href="property-management-golden.html">Golden</a></li>
+          <li><a href="property-management-denver.html">Denver</a></li>
         </ul>
       </div>
       <div class="footer-col">
