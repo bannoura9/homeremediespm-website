@@ -2,6 +2,32 @@
 (function () {
   "use strict";
 
+  /* ---------------------------------------------------------
+     Conversion tracking — GA4 key events + Clarity session tags.
+     Clarity tags let you filter recordings down to sessions that
+     actually converted.
+     --------------------------------------------------------- */
+  function track(name, params) {
+    var p = params || {};
+    if (typeof window.gtag === "function") window.gtag("event", name, p);
+    if (typeof window.clarity === "function") {
+      window.clarity("set", name, p.form_id || p.method || "true");
+      if (name === "generate_lead") window.clarity("upgrade", "lead");
+    }
+  }
+
+  /* Phone + email clicks, delegated so it also covers links injected
+     later (announcement bar, exit popup). */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (!a) return;
+    var phone = a.getAttribute("href").indexOf("tel:") === 0;
+    track(phone ? "contact_phone_click" : "contact_email_click", {
+      method: phone ? "phone" : "email",
+      page_path: location.pathname
+    });
+  });
+
   /* Sticky header shadow on scroll */
   var header = document.querySelector(".site-header");
   function onScroll() {
@@ -61,6 +87,7 @@
         "mailto:homeremediespm@gmail.com" +
         "?subject=" + encodeURIComponent("Website inquiry — " + subjectType + (name ? " (" + name + ")" : "")) +
         "&body=" + encodeURIComponent(body);
+      track("generate_lead", { form_id: "contact", lead_type: subjectType });
       window.location.href = href;
       var status = document.getElementById("formStatus");
       if (status) {
@@ -91,10 +118,10 @@
         "mailto:homeremediespm@gmail.com" +
         "?subject=" + encodeURIComponent("Free rental analysis — " + addr) +
         "&body=" + encodeURIComponent(body);
+      track("generate_lead", { form_id: "rental_analysis", lead_type: "Rental analysis" });
       window.location.href = href;
       var s = document.getElementById("rentalStatus");
       if (s) { s.textContent = "Opening your email app… or just call (720) 722-0357. We'll be in touch within one business day."; s.style.color = "var(--forest)"; }
-      if (typeof gtag === "function") gtag("event", "generate_lead", { form: "rental_analysis" });
     });
   }
 
@@ -198,6 +225,7 @@
         "mailto:homeremediespm@gmail.com" +
         "?subject=" + encodeURIComponent("Free consultation request — " + name) +
         "&body=" + encodeURIComponent(body);
+      track("generate_lead", { form_id: "exit_popup", lead_type: "Free consultation" });
       window.location.href = href;
       f.parentNode.innerHTML =
         '<span class="eyebrow">Thank you</span>' +
