@@ -42,7 +42,7 @@ Hosted via **GitHub Pages** from the `main` branch. To point the real domain (`h
 ## Contact
 
 **Home Remedies Property Management and Real Estate Services**
-5601 Olde Wadsworth Blvd, Suite 220, Arvada, CO 80002
+3923 West 99th Pl., Westminster, CO 80031
 (720) 722-0357 · homeremediespm@gmail.com · Mon–Fri 9:00 am – 5:00 pm
 
 ---
