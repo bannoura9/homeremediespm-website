@@ -66,11 +66,14 @@
           '</a>' +
         '</div>' +
       '</div>';
-    requestAnimationFrame(function () {
-      ctOverlay.classList.add("open");
-      var call = ctOverlay.querySelector(".ct-btn--call");
-      if (call) call.focus();
-    });
+    /* Force a reflow, then add .open — triggers the CSS transition
+       reliably even when requestAnimationFrame is throttled (e.g. an
+       inactive tab), which rAF-based reveals silently fail to do. */
+    ctOverlay.classList.remove("open");
+    void ctOverlay.offsetWidth;
+    ctOverlay.classList.add("open");
+    var call = ctOverlay.querySelector(".ct-btn--call");
+    if (call) call.focus();
   }
 
   document.addEventListener("click", function (e) {
