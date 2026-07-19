@@ -16,16 +16,88 @@
     }
   }
 
-  /* Phone + email clicks, delegated so it also covers links injected
-     later (announcement bar, exit popup). */
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
-    if (!a) return;
-    var phone = a.getAttribute("href").indexOf("tel:") === 0;
-    track(phone ? "contact_phone_click" : "contact_email_click", {
-      method: phone ? "phone" : "email",
-      page_path: location.pathname
+  /* ---------------------------------------------------------
+     Call-or-Text chooser + contact-click tracking.
+     Tapping any phone link opens a small "Call or Text?" dialog
+     instead of dialing straight away — many people would rather
+     text. Delegated so it also covers links injected later
+     (announcement bar, exit popup). Tracking is preserved:
+     contact_phone_click fires on Call, contact_text_click on Text,
+     contact_email_click on mailto.
+     --------------------------------------------------------- */
+  var ctOverlay = null;
+
+  function fmtPhone(raw) {
+    var d = (raw || "").replace(/\D/g, "");
+    if (d.length === 11 && d.charAt(0) === "1") d = d.slice(1);
+    return d.length === 10
+      ? "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6)
+      : raw.replace(/^tel:/, "");
+  }
+  function closeCallText() {
+    if (ctOverlay) ctOverlay.classList.remove("open");
+  }
+  function openCallText(telHref) {
+    var num = telHref.replace(/^tel:/, "");
+    if (!ctOverlay) {
+      ctOverlay = document.createElement("div");
+      ctOverlay.className = "ct-overlay";
+      ctOverlay.setAttribute("role", "dialog");
+      ctOverlay.setAttribute("aria-modal", "true");
+      ctOverlay.setAttribute("aria-label", "Call or text us");
+      document.body.appendChild(ctOverlay);
+      ctOverlay.addEventListener("click", function (e) {
+        if (e.target === ctOverlay || e.target.closest(".ct-close")) closeCallText();
+      });
+    }
+    ctOverlay.innerHTML =
+      '<div class="ct-modal">' +
+        '<button class="ct-close" type="button" aria-label="Close">×</button>' +
+        '<h3>Call or text us</h3>' +
+        '<p class="ct-num">' + fmtPhone(telHref) + '</p>' +
+        '<div class="ct-actions">' +
+          '<a class="ct-btn ct-btn--call" href="tel:' + num + '">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' +
+            'Call' +
+          '</a>' +
+          '<a class="ct-btn ct-btn--text" href="sms:' + num + '">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' +
+            'Text' +
+          '</a>' +
+        '</div>' +
+      '</div>';
+    requestAnimationFrame(function () {
+      ctOverlay.classList.add("open");
+      var call = ctOverlay.querySelector(".ct-btn--call");
+      if (call) call.focus();
     });
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"], a[href^="sms:"]');
+    if (!a) return;
+    var href = a.getAttribute("href");
+
+    if (href.indexOf("mailto:") === 0) {
+      track("contact_email_click", { method: "email", page_path: location.pathname });
+      return;
+    }
+    if (href.indexOf("sms:") === 0) {                 /* "Text" chosen */
+      track("contact_text_click", { method: "sms", page_path: location.pathname });
+      return;                                          /* let Messages open */
+    }
+    /* tel: — inside the chooser it's the "Call" choice (dial + track);
+       anywhere else, intercept and offer Call-or-Text first. */
+    if (a.closest(".ct-modal")) {
+      track("contact_phone_click", { method: "phone", page_path: location.pathname });
+      return;
+    }
+    e.preventDefault();
+    openCallText(href);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeCallText();
   });
 
   /* Sticky header shadow on scroll */

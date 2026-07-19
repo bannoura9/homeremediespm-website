@@ -569,6 +569,60 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 .lead-modal__fine { font-size: .78rem; color: #6b7a72; text-align: center; margin: .8rem 0 0; }
 
 /* ============================================================
+   CALL-OR-TEXT CHOOSER
+   ============================================================ */
+.ct-overlay {
+  position: fixed; inset: 0; z-index: 1100;
+  background: rgba(15,43,32,.55);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.2rem;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.ct-overlay.open { opacity: 1; visibility: visible; }
+.ct-modal {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--gold);
+  max-width: 380px; width: 100%;
+  padding: 2.2rem 2rem 2rem;
+  position: relative; text-align: center;
+  transform: translateY(14px) scale(.98);
+  transition: transform .28s cubic-bezier(.2,.8,.2,1);
+}
+.ct-overlay.open .ct-modal { transform: translateY(0) scale(1); }
+.ct-close {
+  position: absolute; top: .8rem; right: .95rem;
+  background: none; border: 0; font-size: 1.5rem; line-height: 1;
+  color: var(--ink); opacity: .5; cursor: pointer;
+}
+.ct-close:hover { opacity: 1; }
+.ct-modal h3 { font-size: 1.5rem; margin: 0 0 .3rem; }
+.ct-num {
+  font-family: var(--font-serif); font-size: 1.35rem; font-weight: 560;
+  color: var(--forest); margin: 0 0 1.5rem; letter-spacing: -.01em;
+}
+.ct-actions { display: flex; gap: .8rem; }
+.ct-btn {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem; padding: .95rem 1rem; border-radius: 999px;
+  font-weight: 650; font-size: 1rem; text-decoration: none;
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+.ct-btn svg { width: 20px; height: 20px; flex: none; }
+.ct-btn--call { background: var(--forest); color: #fdfbf4; box-shadow: var(--shadow-md); }
+.ct-btn--call:hover { background: var(--forest-700); transform: translateY(-2px); }
+.ct-btn--text { background: var(--gold); color: #2a1d05; box-shadow: 0 10px 24px -10px rgba(193,149,63,.7); }
+.ct-btn--text:hover { transform: translateY(-2px); }
+@media (max-width: 360px) { .ct-actions { flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) {
+  .ct-overlay, .ct-modal, .ct-btn { transition: none; }
+  .ct-modal { transform: none; }
+}
+
+/* ============================================================
    FREE RENTAL ANALYSIS SECTION
    ============================================================ */
 .rental {
