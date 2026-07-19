@@ -144,7 +144,22 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* Contact form -> pre-filled email (no backend on static hosting) */
+  /* -----------------------------------------------------------
+     Lead delivery — POST straight to Web3Forms so submissions land
+     in the inbox server-side (no mailto:, nothing can silently drop)
+     ----------------------------------------------------------- */
+  var W3F_KEY = "3e9ce654-3f10-49fd-bdce-bcad2fdc6750";
+  function sendLead(payload) {
+    payload.access_key = W3F_KEY;
+    payload.from_name = payload.from_name || "Home Remedies PM Website";
+    return fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); });
+  }
+
+  /* Contact form -> Web3Forms */
   var form = document.getElementById("contactForm");
   if (form) {
     form.addEventListener("submit", function (ev) {
@@ -152,27 +167,29 @@
       var data = new FormData(form);
       var name = ((data.get("firstName") || "") + " " + (data.get("lastName") || "")).trim();
       var subjectType = data.get("subject") || "General inquiry";
-      var body =
-        "Name: " + name + "\n" +
-        "Email: " + (data.get("email") || "") + "\n" +
-        "Phone: " + (data.get("phone") || "") + "\n" +
-        "Regarding: " + subjectType + "\n\n" +
-        (data.get("message") || "");
-      var href =
-        "mailto:homeremediespm@gmail.com" +
-        "?subject=" + encodeURIComponent("Website inquiry — " + subjectType + (name ? " (" + name + ")" : "")) +
-        "&body=" + encodeURIComponent(body);
-      track("generate_lead", { form_id: "contact", lead_type: subjectType });
-      window.location.href = href;
       var status = document.getElementById("formStatus");
-      if (status) {
-        status.textContent = "Opening your email app… if nothing happens, email us directly at homeremediespm@gmail.com.";
-        status.style.color = "var(--forest)";
-      }
+      var btn = form.querySelector('[type="submit"]');
+      if (status) { status.textContent = "Sending…"; status.style.color = "var(--forest)"; }
+      if (btn) btn.disabled = true;
+      track("generate_lead", { form_id: "contact", lead_type: subjectType });
+      sendLead({
+        subject: "Website inquiry — " + subjectType + (name ? " (" + name + ")" : ""),
+        name: name,
+        email: data.get("email") || "",
+        phone: data.get("phone") || "",
+        regarding: subjectType,
+        message: data.get("message") || ""
+      }).then(function (res) {
+        if (!res || !res.success) throw new Error();
+        form.reset();
+        if (status) { status.textContent = "Thanks — your message has been sent. We’ll be in touch shortly."; status.style.color = "var(--forest)"; }
+      }).catch(function () {
+        if (status) { status.innerHTML = 'Something went wrong. Please email us at <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (720) 722-0357.'; status.style.color = "#b4432f"; }
+      }).then(function () { if (btn) btn.disabled = false; });
     });
   }
 
-  /* Free Rental Analysis form -> pre-filled email */
+  /* Free Rental Analysis form -> Web3Forms */
   var rental = document.getElementById("rentalForm");
   if (rental) {
     rental.addEventListener("submit", function (ev) {
@@ -183,20 +200,26 @@
       var email = (d.get("raEmail") || "").trim();
       var phone = (d.get("raPhone") || "").trim();
       if (!name || !addr || !email) return;
-      var body =
-        "New FREE RENTAL ANALYSIS request:\n\n" +
-        "Property address: " + addr + "\n" +
-        "Name: " + name + "\n" +
-        "Phone: " + phone + "\n" +
-        "Email: " + email + "\n";
-      var href =
-        "mailto:homeremediespm@gmail.com" +
-        "?subject=" + encodeURIComponent("Free rental analysis — " + addr) +
-        "&body=" + encodeURIComponent(body);
-      track("generate_lead", { form_id: "rental_analysis", lead_type: "Rental analysis" });
-      window.location.href = href;
       var s = document.getElementById("rentalStatus");
-      if (s) { s.textContent = "Opening your email app… or just call (720) 722-0357. We'll be in touch within one business day."; s.style.color = "var(--forest)"; }
+      var btn = rental.querySelector('[type="submit"]');
+      if (s) { s.textContent = "Sending…"; s.style.color = "var(--forest)"; }
+      if (btn) btn.disabled = true;
+      track("generate_lead", { form_id: "rental_analysis", lead_type: "Rental analysis" });
+      sendLead({
+        subject: "Free rental analysis — " + addr,
+        name: name,
+        email: email,
+        phone: phone,
+        property_address: addr,
+        message: "New FREE RENTAL ANALYSIS request.\n\nProperty address: " + addr +
+                 "\nName: " + name + "\nPhone: " + phone + "\nEmail: " + email
+      }).then(function (res) {
+        if (!res || !res.success) throw new Error();
+        rental.reset();
+        if (s) { s.textContent = "Thanks — your request is in. We’ll be in touch within one business day, or call (720) 722-0357."; s.style.color = "var(--forest)"; }
+      }).catch(function () {
+        if (s) { s.innerHTML = 'Something went wrong. Please email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (720) 722-0357.'; s.style.color = "#b4432f"; }
+      }).then(function () { if (btn) btn.disabled = false; });
     });
   }
 
@@ -291,23 +314,29 @@
       var phone = (f.leadPhone.value || "").trim();
       var email = (f.leadEmail.value || "").trim();
       if (!name || !email) { (name ? f.leadEmail : f.leadName).focus(); return; }
-      var body =
-        "New consultation request from the website popup:\n\n" +
-        "Name: " + name + "\n" +
-        "Phone: " + phone + "\n" +
-        "Email: " + email + "\n";
-      var href =
-        "mailto:homeremediespm@gmail.com" +
-        "?subject=" + encodeURIComponent("Free consultation request — " + name) +
-        "&body=" + encodeURIComponent(body);
+      var btn = f.querySelector('[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
       track("generate_lead", { form_id: "exit_popup", lead_type: "Free consultation" });
-      window.location.href = href;
-      f.parentNode.innerHTML =
-        '<span class="eyebrow">Thank you</span>' +
-        '<h3>You’re all set, ' + (name.split(" ")[0] || "there") + '.</h3>' +
-        '<p>Your email app is opening so you can send your request — or just call us at ' +
-        '<a href="tel:+17207220357">(720) 722-0357</a>. We’ll be in touch shortly.</p>';
-      setTimeout(close, 4000);
+      sendLead({
+        subject: "Free consultation request — " + name,
+        name: name,
+        email: email,
+        phone: phone,
+        message: "New consultation request from the website popup.\n\nName: " + name +
+                 "\nPhone: " + phone + "\nEmail: " + email
+      }).then(function (res) {
+        if (!res || !res.success) throw new Error();
+        f.parentNode.innerHTML =
+          '<span class="eyebrow">Thank you</span>' +
+          '<h3>You’re all set, ' + (name.split(" ")[0] || "there") + '.</h3>' +
+          '<p>Your request has been sent — we’ll be in touch shortly. Prefer to talk now? ' +
+          'Call <a href="tel:+17207220357">(720) 722-0357</a>.</p>';
+        setTimeout(close, 4000);
+      }).catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = "Get my free consultation"; }
+        var fine = overlay.querySelector(".lead-modal__fine");
+        if (fine) { fine.innerHTML = 'Something went wrong — please email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (720) 722-0357.'; fine.style.color = "#b4432f"; }
+      });
     });
   })();
 })();
