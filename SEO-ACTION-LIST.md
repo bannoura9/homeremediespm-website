@@ -283,20 +283,20 @@ extensionless form). This is *handled* — every page's canonical tag points
 at the `.html` version — but it explains why Google has `/pricing` indexed
 instead of `/pricing.html`. Nothing to fix; it will consolidate.
 
-### Semrush Site Audit — Site Health 91% -> **94%** after the fixes
+### Semrush Site Audit — Site Health 91% -> **96%** after the fixes
 
-Re-crawled after the changes below. Confirmed result:
+Re-crawled twice on Aug 8. Confirmed result:
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Site Health | 91% | **94%** (top-10% benchmark is 92%) |
-| AI Search Health | 99% | **100%** |
-| Internal Linking | 97% | **100%** |
-| Duplicate H1/title | 6 pages | **0** |
-| Pages with one internal link | 1 | **0** |
-
-Remaining warnings are only "unminified JS/CSS" (noise, see below) and
-"no HSTS support" on 2 subdomains.
+| Metric | Start | After content fixes | After minification |
+|--------|-------|---------------------|--------------------|
+| Site Health | 91% | 94% | **96%** (top-10% benchmark is 92%) |
+| AI Search Health | 99% | 100% | **100%** |
+| Internal Linking | 97% | 100% | **100%** |
+| Warnings | 64 | 64 | **0** |
+| Healthy pages | 3 | 3 | **35** |
+| Pages with issues | 34 | 34 | **2** |
+| Duplicate H1/title | 6 pages | 0 | **0** |
+| Pages with one internal link | 1 | 0 | **0** |
 
 **Fixed on Aug 8:**
 - 6 blog posts had a `<title>` byte-identical to their `<h1>`, wasting a
@@ -306,28 +306,65 @@ Remaining warnings are only "unminified JS/CSS" (noise, see below) and
 - `blog-questions-to-ask-property-manager.html` had only one incoming
   internal link. Now three.
 
-**Checked and deliberately left alone:**
-- **5 "4XX errors"** — `/blank-1`, `/blank-4`, `/blank-5`, `/blank-6`,
-  `/members-area/nadirmaaiah/profile`. Nothing in the site links to any of
-  them; Semrush is replaying URLs it found in its July 19 crawl. They 404
-  cleanly, which is correct, and they will age out.
-- **2 "meta refresh redirects"** — `propertymanagement.html` and
-  `post/the-value-of-exceptional-customer-service-in-real-estate.html`.
-  These are the intentional legacy Wix redirects. GitHub Pages cannot issue
-  server-side 301s, so meta refresh + `noindex, follow` is the correct
-  approach. Not a defect.
-- **56 "unminified JS/CSS"** — one shared stylesheet and one script.
-  Measured directly: a full page load is **4 requests and ~22 KB** over
-  the wire (8.6 KB HTML gzipped + 8.6 KB CSS + 4.8 KB JS + favicon), with
-  **zero self-hosted images**. Minifying an 8.6 KB stylesheet would save
-  perhaps 2 KB. This warning is noise at this site's size — ignore it.
-  The only meaningful third-party weight is Google Fonts, GA4 and Clarity,
-  and all three are wanted.
+- **64 "unminified JS/CSS"** — cleared. All 64 pointed at the same two
+  files. `assets/css/styles.css` and `assets/js/main.js` are now generated
+  by `./build.sh` (esbuild) from `assets/css/styles.src.css` and
+  `assets/js/main.src.js`. CSS 40.6 KB -> 31.2 KB, JS 16.0 KB -> 9.9 KB.
+  **Edit the `.src` files, then run `./build.sh`** — the generated files
+  carry a banner saying so. HTML references were unchanged, so no page
+  edits were needed.
+
+### Why the last 4% cannot be fixed in this repo
+
+Everything still open needs control of the HTTP response, which GitHub
+Pages does not give us. It has no server-side redirects and no custom
+headers.
+
+| Issue | Count | What it would take |
+|-------|-------|--------------------|
+| 4XX errors | 5 | A real 301 |
+| Meta refresh redirects | 2 | A real 301 |
+| No HSTS support | 2 | A `Strict-Transport-Security` header |
+
+- **The 5 "4XX errors"** are `/blank-1`, `/blank-4`, `/blank-5`,
+  `/blank-6`, `/members-area/nadirmaaiah/profile` — all dead Wix URLs.
+  Semrush's own broken-links check confirms **0 broken internal links out
+  of 682**: nothing on the site points at them. Semrush re-checks them
+  because it found them in its July 19 crawl. A 404 is the *correct*
+  response for a dead page and Google will drop them on its own, so this
+  is a scoring artifact, not a defect.
+- **The 2 "meta refresh redirects"** are `propertymanagement.html` and
+  `post/the-value-of-exceptional-customer-service-in-real-estate.html`,
+  the intentional legacy Wix redirects. Meta refresh + `noindex, follow`
+  is the best GitHub Pages allows.
+- Do **not** try to fix the 404s with robots.txt. Blocking them would
+  leave them stuck in Google's index as "indexed, though blocked" —
+  strictly worse than letting them 404 and age out.
+
+**The one change that would produce a genuine 100%:** put Cloudflare's
+free plan in front of the site. It supplies real 301s (10 redirect rules
+free; we need 7) and a one-toggle HSTS header. It costs nothing.
+
+It also solves a bigger problem — see the DNS note below.
+
+### DNS and the domain are still at Wix (important)
+
+    Registrar:   Wix.com Ltd.
+    Nameservers: ns2.wixdns.net, ns3.wixdns.net
+    Expires:     2027-06-15
+
+The A records point at GitHub Pages, so the site works — but the zone
+itself lives in the Wix account. **Cancelling the Wix plan without moving
+DNS first could take the site down.** Move nameservers to Cloudflare
+before touching the Wix subscription. That single move both frees the Wix
+plan for cancellation and unlocks the 301s and HSTS above.
+
+Changing nameservers needs Mike's Wix login.
 
 **Good news from the same audit:**
-- AI Search Health **99%** — ChatGPT-User, OAI-SearchBot, Googlebot and
+- AI Search Health **100%** — ChatGPT-User, OAI-SearchBot, Googlebot and
   Google-Extended are all allowed to crawl. The `llms.txt` is doing its job.
-- Markup 100%, HTTPS 98%, Crawlability 97%, Internal Linking 97%.
+- Markup 100%, Internal Linking 100%, HTTPS 98%, Crawlability 97%.
 - No manual actions, no security issues, no indexing errors in 90 days.
 
 ### What this changes about priorities

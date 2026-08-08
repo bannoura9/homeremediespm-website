@@ -48,3 +48,15 @@ Hosted via **GitHub Pages** from the `main` branch. To point the real domain (`h
 ---
 
 © 2024 Home Remedies Property Management and Real Estate Services.
+
+## Editing CSS / JS
+
+`assets/css/styles.css` and `assets/js/main.js` are **generated** — they are
+the minified files the pages load. Do not edit them directly.
+
+1. Edit `assets/css/styles.src.css` or `assets/js/main.src.js`
+2. Run `./build.sh`
+3. Commit both the source and the generated file
+
+GitHub Pages has no build step, so the minified output is committed to the
+repo.
