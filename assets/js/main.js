@@ -184,7 +184,7 @@
         form.reset();
         if (status) { status.textContent = "Thanks — your message has been sent. We’ll be in touch shortly."; status.style.color = "var(--forest)"; }
       }).catch(function () {
-        if (status) { status.innerHTML = 'Something went wrong. Please email us at <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (720) 722-0357.'; status.style.color = "#b4432f"; }
+        if (status) { status.innerHTML = 'Something went wrong. Please email us at <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (303) 515-1352.'; status.style.color = "#b4432f"; }
       }).then(function () { if (btn) btn.disabled = false; });
     });
   }
@@ -216,9 +216,9 @@
       }).then(function (res) {
         if (!res || !res.success) throw new Error();
         rental.reset();
-        if (s) { s.textContent = "Thanks — your request is in. We’ll be in touch within one business day, or call (720) 722-0357."; s.style.color = "var(--forest)"; }
+        if (s) { s.textContent = "Thanks — your request is in. We’ll be in touch within one business day, or call (303) 515-1352."; s.style.color = "var(--forest)"; }
       }).catch(function () {
-        if (s) { s.innerHTML = 'Something went wrong. Please email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (720) 722-0357.'; s.style.color = "#b4432f"; }
+        if (s) { s.innerHTML = 'Something went wrong. Please email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (303) 515-1352.'; s.style.color = "#b4432f"; }
       }).then(function () { if (btn) btn.disabled = false; });
     });
   }
@@ -330,12 +330,12 @@
           '<span class="eyebrow">Thank you</span>' +
           '<h3>You’re all set, ' + (name.split(" ")[0] || "there") + '.</h3>' +
           '<p>Your request has been sent — we’ll be in touch shortly. Prefer to talk now? ' +
-          'Call <a href="tel:+17207220357">(720) 722-0357</a>.</p>';
+          'Call <a href="tel:+13035151352">(303) 515-1352</a>.</p>';
         setTimeout(close, 4000);
       }).catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = "Get my free consultation"; }
         var fine = overlay.querySelector(".lead-modal__fine");
-        if (fine) { fine.innerHTML = 'Something went wrong — please email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (720) 722-0357.'; fine.style.color = "#b4432f"; }
+        if (fine) { fine.innerHTML = 'Something went wrong — please email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (303) 515-1352.'; fine.style.color = "#b4432f"; }
       });
     });
   })();
