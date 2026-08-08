@@ -283,7 +283,20 @@ extensionless form). This is *handled* — every page's canonical tag points
 at the `.html` version — but it explains why Google has `/pricing` indexed
 instead of `/pricing.html`. Nothing to fix; it will consolidate.
 
-### Semrush Site Audit — Site Health 91%
+### Semrush Site Audit — Site Health 91% -> **94%** after the fixes
+
+Re-crawled after the changes below. Confirmed result:
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Site Health | 91% | **94%** (top-10% benchmark is 92%) |
+| AI Search Health | 99% | **100%** |
+| Internal Linking | 97% | **100%** |
+| Duplicate H1/title | 6 pages | **0** |
+| Pages with one internal link | 1 | **0** |
+
+Remaining warnings are only "unminified JS/CSS" (noise, see below) and
+"no HSTS support" on 2 subdomains.
 
 **Fixed on Aug 8:**
 - 6 blog posts had a `<title>` byte-identical to their `<h1>`, wasting a
