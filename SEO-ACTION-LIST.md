@@ -228,8 +228,113 @@ targets.
 
 ---
 
+## PART 4 — Built 2026-08-08 (done, live)
+
+Four new city pages, chosen from PART 3 — the north-metro targets only:
+
+| Page | Target keyword | Volume | Difficulty |
+|------|----------------|--------|-----------|
+| property-management-northglenn.html | northglenn property management | 110/mo | 5 |
+| property-management-commerce-city.html | commerce city property management | 140/mo | 5 |
+| property-management-brighton.html | property management brighton | 90/mo | 3 |
+| property-management-lafayette.html | manage my rental property lafayette colorado | 70/mo | 4 |
+
+Littleton, Englewood, Castle Rock and Lakewood were deliberately skipped —
+30-45 minutes south of Westminster, outside the real service area.
+
+Each page has unique local copy (neighborhoods, ZIP codes, market angle),
+`RealEstateAgent` + `FAQPage` schema with correct coordinates, and the
+canonical NAP. Wired into the footer on all 30 pages, the homepage area
+tiles, `sitemap.xml` and `llms.txt`. The footer now carries all 12 cities
+sitewide, which also strengthens internal linking to the eight older pages.
+
+---
+
+## PART 5 — Technical audit (2026-08-08)
+
+### THE HEADLINE FINDING: most of the site is not in Google's index
+
+Google Search Console, Pages report:
+
+- **Indexed: 14 URLs — but only 10 are real, current pages.**
+  The other four are ghosts: `/blank-1`, `/blank-4`, `/blank-6` (dead Wix
+  URLs that now 404) and `/pricing` (the extensionless Wix-era URL).
+- **Not indexed: everything else** — all 10 blog articles, plus
+  `about`, `contact`, `management`, `testimonials` and `blog`.
+
+The ten long-form articles written in July are, as far as Google is
+concerned, not on the internet. That is the single biggest gap between
+work done and results seen.
+
+Cause is discovery, not quality: the sitemap was only successfully read
+by Google on **Aug 8**. It has now been resubmitted and shows **30 pages
+discovered**, so the queue is moving. Manual "Request Indexing" hit the
+**daily quota** on Aug 8 (used up by the morning's blog submissions) —
+resume tomorrow, roughly 10 URLs a day, in this order:
+
+1. The four new city pages
+2. contact.html, testimonials.html, management.html, about.html
+3. blog.html, then the ten blog-*.html articles
+
+### Duplicate URLs — every page answers at two addresses
+
+`/about` and `/about.html` both return 200 (GitHub Pages serves the
+extensionless form). This is *handled* — every page's canonical tag points
+at the `.html` version — but it explains why Google has `/pricing` indexed
+instead of `/pricing.html`. Nothing to fix; it will consolidate.
+
+### Semrush Site Audit — Site Health 91%
+
+**Fixed on Aug 8:**
+- 6 blog posts had a `<title>` byte-identical to their `<h1>`, wasting a
+  chance to target a keyword variant. All rewritten.
+- `blog.html` had a 79-character title that Google was truncating.
+  Shortened to 59.
+- `blog-questions-to-ask-property-manager.html` had only one incoming
+  internal link. Now three.
+
+**Checked and deliberately left alone:**
+- **5 "4XX errors"** — `/blank-1`, `/blank-4`, `/blank-5`, `/blank-6`,
+  `/members-area/nadirmaaiah/profile`. Nothing in the site links to any of
+  them; Semrush is replaying URLs it found in its July 19 crawl. They 404
+  cleanly, which is correct, and they will age out.
+- **2 "meta refresh redirects"** — `propertymanagement.html` and
+  `post/the-value-of-exceptional-customer-service-in-real-estate.html`.
+  These are the intentional legacy Wix redirects. GitHub Pages cannot issue
+  server-side 301s, so meta refresh + `noindex, follow` is the correct
+  approach. Not a defect.
+- **56 "unminified JS/CSS"** — one shared stylesheet and one script.
+  Measured directly: a full page load is **4 requests and ~22 KB** over
+  the wire (8.6 KB HTML gzipped + 8.6 KB CSS + 4.8 KB JS + favicon), with
+  **zero self-hosted images**. Minifying an 8.6 KB stylesheet would save
+  perhaps 2 KB. This warning is noise at this site's size — ignore it.
+  The only meaningful third-party weight is Google Fonts, GA4 and Clarity,
+  and all three are wanted.
+
+**Good news from the same audit:**
+- AI Search Health **99%** — ChatGPT-User, OAI-SearchBot, Googlebot and
+  Google-Extended are all allowed to crawl. The `llms.txt` is doing its job.
+- Markup 100%, HTTPS 98%, Crawlability 97%, Internal Linking 97%.
+- No manual actions, no security issues, no indexing errors in 90 days.
+
+### What this changes about priorities
+
+Nothing on-page is broken. The site is technically clean. The two things
+standing between this site and traffic remain, in order:
+
+1. **The Google Business Profile has no address set** — so it cannot rank
+   in the map pack at all. Still the single highest-value fix.
+2. **Authority** — 0 links from any of the 218 quality domains that link
+   to competitors (PART 2).
+
+Indexing is now a third, temporary item that resolves itself over the next
+few weeks provided the daily indexing requests keep going.
+
+---
+
 ## Order of work
 
+0. Request indexing in GSC, ~10 URLs/day, until all 30 pages are indexed
 1. Bing + Yelp + Foursquare — free, ~15 min each, biggest immediate reach
 2. BBB + Expertise.com + coloproperty + propertymanagement.com — Tier 1 links
 3. Nextdoor + Yellow Pages + the smaller free directories
