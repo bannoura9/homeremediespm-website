@@ -1,6 +1,6 @@
 # Home Remedies Property Management — Website
 
-A modern, fast, fully static redesign of [homeremediespm.com](https://www.homeremediespm.com) for **Home Remedies Property Management and Real Estate Services** — a family-owned company serving Arvada, Westminster, and the greater Denver metro since 2019.
+A modern, fast, fully static redesign of [homeremediespm.com](https://www.homeremediespm.com) for **Home Remedies Property Management and Real Estate Services** — a family-owned company serving Arvada, Westminster, and the greater Denver metro since 2024.
 
 > *Where Excellence Meets Management.*
 

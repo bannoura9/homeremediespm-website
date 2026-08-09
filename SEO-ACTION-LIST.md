@@ -11,16 +11,16 @@ Phone:    (303) 515-1352
 Email:    homeremediespm@gmail.com
 Website:  https://www.homeremediespm.com/
 Hours:    Mon-Fri 9:00 AM - 5:00 PM
-Founded:  2019
+Founded:  2024
 Category: Property Management Company
 Also:     Real Estate Agency
 ```
 
 **Short description (under 200 chars):**
-> Family-owned property management in Westminster and the Denver metro since 2019. Full-service tenant screening, leasing, rent collection, maintenance, inspections and monthly financial reporting.
+> Family-owned property management in Westminster and the Denver metro since 2024. Full-service tenant screening, leasing, rent collection, maintenance, inspections and monthly financial reporting.
 
 **Long description:**
-> Home Remedies Property Management and Real Estate Services is a family-owned company serving Westminster, Arvada, Denver, Thornton, Broomfield, Erie, Golden and Wheat Ridge since 2019. We manage single-family homes, townhomes, condos and small multi-family properties. Services include tenant screening and leasing, rent collection, maintenance coordination, property inspections and monthly financial reporting. No-penalty month-to-month contracts and a free rental analysis for owners.
+> Home Remedies Property Management and Real Estate Services is a family-owned company serving Westminster, Arvada, Denver, Thornton, Broomfield, Erie, Golden and Wheat Ridge since 2024. We manage single-family homes, townhomes, condos and small multi-family properties. Services include tenant screening and leasing, rent collection, maintenance coordination, property inspections and monthly financial reporting. No-penalty month-to-month contracts and a free rental analysis for owners.
 
 ---
 
