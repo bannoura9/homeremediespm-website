@@ -372,6 +372,11 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 .post-cta h3 { color: #fff; font-size: 1.3rem; margin: 0; }
 .post-cta p { color: #cdd6cb; margin: .5rem 0 1.1rem; max-width: 52ch; }
 /* FAQ (article) */
+.author-box { margin-top: 2.8rem; padding: 1.4rem 1.6rem; background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: var(--radius); color: #33413a; font-size: .98rem; line-height: 1.65; }
+.author-box__eyebrow { margin: 0 0 .45rem; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.author-box p { margin: 0; max-width: 72ch; }
+.author-box a { color: var(--forest); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(31,77,63,.35); font-weight: 500; }
+.author-box a:hover { text-decoration-color: var(--gold); }
 .faq-block { margin-top: 2.6rem; }
 .faq-block .faq-q { padding: 1.15rem 0; border-top: 1px solid var(--line); }
 .faq-block .faq-q h3 { margin: 0 0 .4rem; font-size: 1.12rem; color: var(--forest); }
