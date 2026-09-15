@@ -339,4 +339,100 @@
       });
     });
   })();
+
+  /* ---------------------------------------------------------
+     Whole-card click. Cards with a single "Learn more" link are
+     often clicked on their icon or title (Clarity dead clicks) —
+     make the entire card go where the link goes.
+     --------------------------------------------------------- */
+  document.querySelectorAll(".card").forEach(function (card) {
+    var links = card.querySelectorAll("a[href]");
+    if (links.length !== 1) return;
+    var href = links[0].getAttribute("href");
+    card.classList.add("is-clickable");
+    card.addEventListener("click", function (e) {
+      if (e.target.closest("a, button, input, select, textarea")) return;
+      if (e.metaKey || e.ctrlKey) { window.open(href, "_blank"); return; }
+      window.location.href = href;
+    });
+  });
+
+  /* ---------------------------------------------------------
+     Mobile action bar — article pages only, shows after the
+     reader has scrolled a screen, hides near the page-end CTA.
+     --------------------------------------------------------- */
+  (function mobileBar() {
+    if (!document.querySelector(".article-wrap")) return;
+    if (document.getElementById("rentalForm") || document.getElementById("checklistForm")) return;
+    var bar = document.createElement("div");
+    bar.className = "mobile-bar";
+    bar.innerHTML =
+      '<a class="btn btn--primary" href="tel:+13035151352">Call (303) 515-1352</a>' +
+      '<a class="btn btn--gold" href="free-rental-analysis.html" data-track="mobile_bar_analysis">Free rental analysis</a>';
+    document.body.appendChild(bar);
+    document.body.classList.add("has-mobile-bar");
+    var band = document.querySelector(".cta-band") || document.querySelector(".site-footer");
+    function update() {
+      var past = window.scrollY > window.innerHeight * 0.8;
+      var nearEnd = band && band.getBoundingClientRect().top < window.innerHeight;
+      bar.classList.toggle("show", past && !nearEnd);
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+    bar.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-track]");
+      if (a) track("select_content", { content_type: "mobile_bar", item_id: a.getAttribute("data-track") });
+    });
+  })();
+
+  /* ---------------------------------------------------------
+     Colorado landlord checklist — email gate. Submits to
+     Web3Forms, then reveals the checklist and remembers the
+     unlock in localStorage so returning readers skip the form.
+     --------------------------------------------------------- */
+  (function checklistGate() {
+    var gate = document.getElementById("checklistForm");
+    var list = document.getElementById("checklist");
+    if (!gate || !list) return;
+    var UNLOCK = "hr_checklist_unlocked";
+    function reveal() {
+      list.hidden = false;
+      var wrap = gate.closest(".checklist-gate");
+      if (wrap) wrap.hidden = true;
+      var intro = document.getElementById("checklistIntro");
+      if (intro) intro.hidden = true;
+    }
+    var unlocked = false;
+    try { unlocked = localStorage.getItem(UNLOCK) === "1"; } catch (e) {}
+    if (unlocked || /[?&]unlock=1/.test(location.search)) { reveal(); return; }
+    gate.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var d = new FormData(gate);
+      var name = (d.get("clName") || "").trim();
+      var email = (d.get("clEmail") || "").trim();
+      var city = (d.get("clCity") || "").trim();
+      var status = document.getElementById("checklistStatus");
+      var btn = gate.querySelector('[type="submit"]');
+      if (!email || email.indexOf("@") < 1) { if (status) { status.textContent = "Please enter a valid email."; status.style.color = "#b4432f"; } return; }
+      if (status) { status.textContent = "One moment…"; status.style.color = "var(--forest)"; }
+      if (btn) btn.disabled = true;
+      track("generate_lead", { form_id: "landlord_checklist", lead_type: "Checklist download" });
+      sendLead({
+        subject: "Landlord checklist download — " + (name || email),
+        name: name,
+        email: email,
+        property_city: city,
+        message: "New CHECKLIST download.\n\nName: " + name + "\nEmail: " + email + "\nProperty city: " + city
+      }).then(function (res) {
+        if (!res || !res.success) throw new Error();
+        try { localStorage.setItem(UNLOCK, "1"); } catch (e) {}
+        reveal();
+        list.scrollIntoView({ behavior: "smooth", block: "start" });
+      }).catch(function () {
+        if (status) { status.innerHTML = 'Something went wrong. Email <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> and we will send it over.'; status.style.color = "#b4432f"; }
+      }).then(function () { if (btn) btn.disabled = false; });
+    });
+    var printBtn = document.getElementById("checklistPrint");
+    if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+  })();
 })();
