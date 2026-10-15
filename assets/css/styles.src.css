@@ -861,3 +861,10 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 }
 .post__cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.3,1); }
 .post:hover .post__cover img { transform: scale(1.04); }
+
+/* Prose tables (renter guides) */
+.prose table{width:100%;border-collapse:collapse;margin:1.4rem 0 1.8rem;font-size:.95rem;line-height:1.45}
+.prose th,.prose td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--line,#e6e0d2);vertical-align:top}
+.prose th{font-weight:650;color:var(--green,#1f4d3f);background:rgba(31,77,63,.06)}
+.prose tbody tr:nth-child(even) td{background:rgba(31,77,63,.025)}
+@media (max-width:600px){.prose table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}

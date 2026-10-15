@@ -15,6 +15,8 @@ Home Remedies Property Management and Real Estate Services is a family-owned com
 
 ## Services
 
+- [Home](https://www.homeremediespm.com/): Overview of services, areas served and the free rental analysis.
+
 - [Property Management](https://www.homeremediespm.com/management.html): Full-service residential property management — tenant screening, leasing, rent collection, maintenance, and monthly owner reporting.
 - [STR Management](https://www.homeremediespm.com/str-management.html): Short-term rental management for Airbnb, VRBO, and Booking.com — multi-platform listing, dynamic pricing, guest communication, and turnovers, for a flat 20% of booking revenue.
 - [Buying & Selling](https://www.homeremediespm.com/buy-sell.html): Residential real estate services for buyers and sellers across the Denver metro.
@@ -116,6 +118,13 @@ Owner-focused guides on Colorado landlord law, hiring a property manager, rental
 - [Thornton & Northglenn Rental Market 2026: Rents & Outlook](https://www.homeremediespm.com/blog-thornton-northglenn-rental-market-2026.html): Current Thornton and Northglenn rent data for 2026, why one market keeps climbing while the other cools, and how north-metro landlords should price this year.
 - [Colorado's Warranty of Habitability: A Landlord's Obligations](https://www.homeremediespm.com/blog-warranty-of-habitability-colorado.html): What makes a Colorado rental habitable, what happens when a tenant gives notice of a problem, and why the response deadline matters more than the repair itself.
 - [Westminster & Arvada Rental Market 2026: Rents & Outlook](https://www.homeremediespm.com/blog-westminster-arvada-rental-market-2026.html): Updated September 2026: where Westminster and Arvada rents stand now, why the two markets are diverging, and how to price your rental accordingly.
+
+## For renters
+
+Guides for people looking for a rental home in the Denver metro. Home Remedies lists its available homes on the major rental sites and keeps a waiting list through the contact page.
+
+- [Rental Homes in Arvada & Westminster, CO: A 2026 Renter's Guide](https://www.homeremediespm.com/blog-rental-homes-arvada-westminster.html): What houses, townhomes and condos rent for in Arvada and Westminster in 2026 by home type, the neighborhoods renters look at, Colorado's caps on application fees, income requirements, security deposits and pet fees, and how to apply.
+- [Renting a Condo in Denver: What to Know Before You Sign](https://www.homeremediespm.com/blog-denver-condo-rentals.html): Denver condo rents in 2026, how HOA rules bind tenants, the Denver residential rental license, what is usually included, and questions to ask before signing.
 
 ## Company
 
