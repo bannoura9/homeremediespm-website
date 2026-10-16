@@ -270,3 +270,26 @@ still nearly nonexistent.
 10. Give Claude: business hours, 5+ photos, founding year (public-facing),
     CO real estate license # (if any), payment methods/free-consultation
     answer — needed before building out new directory listings further.
+
+## 2026-10-15 — Full on-site SEO pass (Claude)
+
+GSC 28 days to Oct 13: 24 clicks, 4,180 impressions, avg position 26.3 (was 39.9 Sep,
+48.6 Aug). External links 3 (bbb, mapquest, xploredomains). City queries (Lakewood 171,
+Arvada 148, Lafayette 132, Broomfield 252 impressions) all had 0 clicks.
+
+Shipped on site:
+- All 62 over-length meta descriptions rewritten to 160 chars or fewer (city pages were 214-254).
+- City page titles now "{City} Property Management | Family-Owned, 8% Fee".
+- Homepage H1 is now "Westminster & Denver Metro Property Management"; tagline moved to the sub line.
+- Every page with a hero photo now uses that photo as og:image / twitter:image (1920x1072, with
+  og:image:alt) and as the BlogPosting / RealEstateAgent schema image instead of og-default.png.
+- Homepage schema: @id, geo, hasMap, logo, image array. City schema: canonical business name
+  (was "Home Remedies Property Management — {City}"), shared @id.
+- New "Renting in {City}" section on all 20 city pages (3 H3s: market now, who rents, local
+  rules) grounded in the site's own 2026 market reports. City pages went from ~830 to ~1,050
+  words and shared-boilerplate share fell from ~50% to ~40%. Each links to its market report.
+- Author box on all 58 posts now links the seven city names to their city pages.
+- Sitemap lastmod set to 2026-10-15 for every touched page.
+
+Not possible from the repo: backlinks/citations (still the ceiling), streetAddress in schema
+(Nadir's call), real GBP profile URL (only a Maps search URL is known).
