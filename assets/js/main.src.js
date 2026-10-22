@@ -174,7 +174,10 @@
       var btn = form.querySelector('[type="submit"]');
       if (status) { status.textContent = "Sending…"; status.style.color = "var(--forest)"; }
       if (btn) btn.disabled = true;
-      track("generate_lead", { form_id: "contact", lead_type: subjectType });
+      // Vendor/service-provider pitches still get emailed through, but don't count as a sales lead in analytics.
+      if (subjectType !== "Vendor / service provider") {
+        track("generate_lead", { form_id: "contact", lead_type: subjectType });
+      }
       sendLead({
         subject: "Website inquiry — " + subjectType + (name ? " (" + name + ")" : ""),
         name: name,
