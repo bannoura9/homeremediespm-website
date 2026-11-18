@@ -897,4 +897,5 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 .prop-card__place { color: var(--muted); font-size: .92rem; }
 .prop-card__facts { font-size: .92rem; color: var(--ink, inherit); }
 .prop-card__rent { font-weight: 650; color: var(--forest); font-size: 1.02rem; margin-top: .2rem; }
+.prop-card__terms { font-size: .88rem; color: var(--muted, #5b6660); margin: .25rem 0 0; line-height: 1.45; }
 .prop-card__cta { margin-top: .6rem; justify-self: start; }
