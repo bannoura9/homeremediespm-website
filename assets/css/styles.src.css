@@ -868,3 +868,22 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 .prose th{font-weight:650;color:var(--green,#1f4d3f);background:rgba(31,77,63,.06)}
 .prose tbody tr:nth-child(even) td{background:rgba(31,77,63,.025)}
 @media (max-width:600px){.prose table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+
+/* ============================================================
+   Properties we manage (properties.html)
+   ============================================================ */
+.prop-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; margin: 0; }
+.prop-card__media { position: relative; }
+.prop-card__media img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: var(--radius) var(--radius) 0 0; }
+.prop-card__tag {
+  position: absolute; top: .9rem; left: .9rem; padding: .32rem .7rem; border-radius: 999px;
+  font-size: .78rem; font-weight: 650; letter-spacing: .02em;
+  background: rgba(15,43,32,.82); color: #f6f2e9; backdrop-filter: blur(4px);
+}
+.prop-card__tag--open { background: var(--gold); color: #0f2b20; }
+.prop-card__body { padding: 1.2rem 1.4rem 1.4rem; display: grid; gap: .35rem; }
+.prop-card__body h3 { font-size: 1.12rem; }
+.prop-card__place { color: var(--muted); font-size: .92rem; }
+.prop-card__facts { font-size: .92rem; color: var(--ink, inherit); }
+.prop-card__rent { font-weight: 650; color: var(--forest); font-size: 1.02rem; margin-top: .2rem; }
+.prop-card__cta { margin-top: .6rem; justify-self: start; }
