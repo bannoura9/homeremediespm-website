@@ -188,7 +188,7 @@
       }).then(function (res) {
         if (!res || !res.success) throw new Error();
         form.reset();
-        if (status) { status.textContent = "Thanks — your message has been sent. We’ll be in touch shortly."; status.style.color = "var(--forest)"; }
+        if (status) { status.textContent = "Thanks — your message was submitted. We reply within one business day."; status.style.color = "var(--forest)"; }
       }).catch(function () {
         if (status) { status.innerHTML = 'Something went wrong. Please email us at <a href="mailto:homeremediespm@gmail.com">homeremediespm@gmail.com</a> or call (303) 515-1352.'; status.style.color = "#b4432f"; }
       }).then(function () { if (btn) btn.disabled = false; });
@@ -364,27 +364,41 @@
   });
 
   /* ---------------------------------------------------------
-     Mobile action bar — article pages only, shows after the
-     reader has scrolled a screen, hides near the page-end CTA.
+     Mobile action bar — article pages, plus landing, service,
+     and city pages (anything with a hero). Call / Text uses the
+     existing tel: chooser. Hidden while the rental form, the
+     end-of-page CTA, or the footer is in the viewport.
      --------------------------------------------------------- */
   (function mobileBar() {
-    if (!document.querySelector(".article-wrap")) return;
-    if (document.getElementById("rentalForm") || document.getElementById("checklistForm")) return;
+    var isArticle = !!document.querySelector(".article-wrap");
+    var isLanding = !!document.querySelector("main .page-hero, main .hero");
+    if (!isArticle && !isLanding) return;
     var bar = document.createElement("div");
     bar.className = "mobile-bar";
     bar.innerHTML =
-      '<a class="btn btn--primary" href="tel:+13035151352">Call (303) 515-1352</a>' +
+      '<a class="btn btn--primary" href="tel:+13035151352">Call / Text</a>' +
       '<a class="btn btn--gold" href="free-rental-analysis.html" data-track="mobile_bar_analysis">Free rental analysis</a>';
     document.body.appendChild(bar);
     document.body.classList.add("has-mobile-bar");
-    var band = document.querySelector(".cta-band") || document.querySelector(".site-footer");
-    function update() {
-      var past = window.scrollY > window.innerHeight * 0.8;
-      var nearEnd = band && band.getBoundingClientRect().top < window.innerHeight;
-      bar.classList.toggle("show", past && !nearEnd);
+    var watch = [];
+    var form = document.getElementById("rentalForm");
+    var band = document.querySelector(".cta-band");
+    var footer = document.querySelector(".site-footer");
+    if (form) watch.push(form);
+    if (band) watch.push(band);
+    if (footer) watch.push(footer);
+    function inView(el) {
+      var r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
     }
-    window.addEventListener("scroll", update, { passive: true });
-    update();
+    function onScroll() {
+      var scrolled = window.scrollY > window.innerHeight * 0.8;
+      var blocked = watch.some(inView);
+      bar.classList.toggle("show", scrolled && !blocked);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
     bar.addEventListener("click", function (e) {
       var a = e.target.closest("a[data-track]");
       if (a) track("select_content", { content_type: "mobile_bar", item_id: a.getAttribute("data-track") });

@@ -262,6 +262,8 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 }
 .band .grid-4 { text-align: center; }
 .band .stat b { font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 3.2rem); color: #fff; display: block; line-height: 1; }
+.band .stat b.stat-label { font-size: clamp(1.35rem, 2.2vw, 1.85rem); line-height: 1.15; max-width: 11ch; }
+.hero__trust .t b.t-label { font-size: 1.2rem; line-height: 1.15; max-width: 12ch; }
 .band .stat span { color: #bcc6bc; font-size: .95rem; margin-top: .5rem; display: block; }
 
 /* ============================================================
@@ -460,8 +462,9 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 .footer-col a:hover { color: #fff; }
 .footer-contact div { margin-bottom: .8rem; font-size: .95rem; color: #c3ccc2; }
 .footer-contact div a:hover { color: #fff; }
-.footer-bottom { margin-top: clamp(36px, 5vw, 56px); padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .84rem; color: #8b968b; }
+.footer-bottom { margin-top: clamp(36px, 5vw, 56px); padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: .7rem 1.2rem; flex-wrap: wrap; font-size: .84rem; color: #8b968b; }
 .footer-bottom a:hover { color: #fff; }
+.footer-bottom .footer-legal { flex: 1 0 100%; color: #a3ada3; font-size: .8rem; letter-spacing: .01em; }
 
 /* ============================================================
    Reveal on scroll
@@ -492,9 +495,9 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
   .pricegrid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
   .posts { grid-template-columns: 1fr 1fr; }
 }
-/* Collapse to the hamburger at 1240px — 11 links + logo + phone pill
+/* Collapse to the hamburger at 1360px — 12 links + logo + phone pill
    only sit cleanly on one line above this; below it we go to the menu. */
-@media (max-width: 1240px) {
+@media (max-width: 1360px) {
   .nav__links, .nav .nav__cta .btn { display: none; }
   .nav-toggle { display: inline-flex; }
   .nav { gap: 0; }
@@ -520,17 +523,18 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
   .addon { flex-direction: column; align-items: flex-start; }
 }
 .mobile-menu { display: none; }
-@media (max-width: 1240px) { .mobile-menu { display: block; } }
+@media (max-width: 1360px) { .mobile-menu { display: block; } }
 
-/* Wide-desktop header: give the 11-link nav more room than the 1180px
+/* Wide-desktop header: give the 12-link nav more room than the 1180px
    content container, and tighten it until there is space for full size. */
-.site-header__inner { max-width: 1480px; }
-@media (min-width: 1241px) and (max-width: 1480px) {
-  .nav { gap: 1rem; }
-  .nav__links { gap: .85rem; }
-  .nav__links a { font-size: .9rem; }
-  .nav__cta .btn { font-size: 0; gap: 0; padding: .75rem; }
-  .nav__cta .btn svg { width: 20px; height: 20px; }
+.site-header__inner { max-width: 1680px; }
+.nav__links { flex-wrap: nowrap; }
+@media (min-width: 1361px) and (max-width: 1580px) {
+  .nav { gap: .75rem; }
+  .nav__links { gap: .55rem; }
+  .nav__links a { font-size: .82rem; }
+  .nav__cta .btn { font-size: 0; gap: 0; padding: .7rem .75rem; }
+  .nav__cta .btn svg { width: 18px; height: 18px; }
 }
 
 /* ============================================================
@@ -800,7 +804,7 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
    inline-cta: compact mid-article offer, placed before the 2nd h2
    audience-note: owner/tenant pointer at the top of legal guides
    related-guides: 3 next-read cards + checklist offer after the author box
-   mobile-bar: fixed call / analysis bar on phones, article pages only
+   mobile-bar: fixed call / analysis bar on phones, articles plus landing, service, and city pages
    ============================================================ */
 .inline-cta { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; margin: 2.2rem 0 !important; padding: 1.1rem 1.3rem; background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: var(--radius); }
 .inline-cta__text { flex: 1 1 260px; }
@@ -899,3 +903,65 @@ body.nav-open .nav-toggle span::after  { transform: rotate(-45deg); }
 .prop-card__rent { font-weight: 650; color: var(--forest); font-size: 1.02rem; margin-top: .2rem; }
 .prop-card__terms { font-size: .88rem; color: var(--muted, #5b6660); margin: .25rem 0 0; line-height: 1.45; }
 .prop-card__cta { margin-top: .6rem; justify-self: start; }
+
+/* Resident portal launch note */
+.card p.portal-note {
+  margin-top: .9rem;
+  padding: .75rem .85rem;
+  background: #fbf7ec;
+  border: 1px solid #ecdfbd;
+  border-radius: var(--radius-sm);
+  color: #4a4536;
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+/* Comparison table (management) */
+.compare-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.compare { width: 100%; border-collapse: collapse; min-width: 760px; font-size: .95rem; line-height: 1.45; }
+.compare caption { caption-side: bottom; text-align: left; padding: .85rem 1rem 1rem; color: var(--muted); font-size: .88rem; }
+.compare th, .compare td { text-align: left; padding: .85rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.compare thead th { background: var(--forest); color: #f6f2e9; font-family: var(--font-sans); font-weight: 650; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+.compare thead th:nth-child(2) { background: var(--forest-700); }
+.compare th[scope="row"] { font-weight: 650; color: var(--forest); width: 18%; background: #fff; font-family: var(--font-sans); font-size: .92rem; letter-spacing: 0; text-transform: none; }
+.compare td:nth-child(2) { background: rgba(193,149,63,.1); }
+.compare tbody tr:last-child td { border-bottom: 0; }
+.compare a { color: var(--forest); font-weight: 650; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Fit + timeline cards beside the rental analysis form.
+   Intro spans the row above; the two cards sit in the left column
+   and the form sits in the right column, top-aligned with the cards. */
+.rental__grid--analysis { align-items: start; }
+.rental__grid--analysis .rental__intro { grid-column: 1 / -1; }
+.rental__grid--analysis .rental__intro p { max-width: 68ch; }
+.rental__grid--analysis .rental-support { grid-column: 1; }
+.rental__grid--analysis .rental__card { grid-column: 2; }
+.rental-support { display: grid; gap: .9rem; }
+.rental-support .card { color: var(--ink); padding: 1.25rem 1.3rem; }
+.rental-support .card:hover { transform: none; }
+.rental-support .card h3 { color: var(--ink); font-size: 1.2rem; }
+.rental-support .card p { max-width: none; color: var(--muted); margin-top: .55rem; }
+.steps { list-style: none; margin: .85rem 0 0; padding: 0; display: grid; gap: .85rem; counter-reset: step; }
+.steps li { display: grid; grid-template-columns: 1.85rem 1fr; gap: .7rem; align-items: start; color: var(--muted); font-size: .95rem; }
+.steps li::before {
+  counter-increment: step; content: counter(step);
+  width: 1.85rem; height: 1.85rem; border-radius: 50%;
+  background: var(--gold); color: #2a1d05; font-weight: 700; font-size: .85rem;
+  display: grid; place-items: center;
+}
+.steps__body { min-width: 0; }
+.steps__body b { display: block; color: var(--ink); font-weight: 650; }
+@media (max-width: 860px) {
+  .rental__grid--analysis .rental__intro,
+  .rental__grid--analysis .rental-support,
+  .rental__grid--analysis .rental__card { grid-column: auto; }
+  .rental__grid--analysis .rental__card { order: 2; }
+  .rental__grid--analysis .rental-support { order: 3; }
+}

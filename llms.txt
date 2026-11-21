@@ -18,6 +18,7 @@ Home Remedies Property Management and Real Estate Services is a family-owned com
 - [Home](https://www.homeremediespm.com/): Overview of services, areas served and the free rental analysis.
 
 - [Property Management](https://www.homeremediespm.com/management.html): Full-service residential property management — tenant screening, leasing, rent collection, maintenance, and monthly owner reporting.
+- [Tenants](https://www.homeremediespm.com/tenants.html): Pay rent, request maintenance, and apply for available homes. The Buildium Resident Center opens January 1, 2027. Emergency maintenance: (303) 515-1352, 24/7.
 - [STR Management](https://www.homeremediespm.com/str-management.html): Short-term rental management for Airbnb, VRBO, and Booking.com — multi-platform listing, dynamic pricing, guest communication, and turnovers, for a flat 20% of booking revenue.
 - [Buying & Selling](https://www.homeremediespm.com/buy-sell.html): Residential real estate services for buyers and sellers across the Denver metro.
 - [Pricing](https://www.homeremediespm.com/pricing.html): 8% of monthly rent for full-service management (7% for portfolios of 5+ properties) with no coordination fee on repair jobs of $300 or less and a 10% coordination fee on jobs over $300, 50% of the first month's rent for tenant placement ($975 flat for any placement after the first), 1 month's rent for lease-only, $299 for lease renewals. Agreements run an initial 6-month term, then convert to no-penalty, month-to-month.
@@ -121,7 +122,9 @@ Owner-focused guides on Colorado landlord law, hiring a property manager, rental
 
 ## For renters
 
-Guides for people looking for a rental home in the Denver metro. Home Remedies lists its available homes on the major rental sites and keeps a waiting list through the contact page.
+Current residents pay rent, request maintenance, and reach the 24/7 emergency line from the tenants page. The Buildium Resident Center opens January 1, 2027. Available homes are listed on the properties page. Guides below are for people looking for a rental home in the Denver metro.
+
+- [Tenants](https://www.homeremediespm.com/tenants.html): Pay rent, submit a maintenance request, and apply for a home. Applicants may provide a Colorado portable tenant screening report that meets the state's requirements.
 
 - [Rental Homes in Arvada & Westminster, CO: A 2026 Renter's Guide](https://www.homeremediespm.com/blog-rental-homes-arvada-westminster.html): What houses, townhomes and condos rent for in Arvada and Westminster in 2026 by home type, the neighborhoods renters look at, Colorado's caps on application fees, income requirements, security deposits and pet fees, and how to apply.
 - [Renting a Condo in Denver: What to Know Before You Sign](https://www.homeremediespm.com/blog-denver-condo-rentals.html): Denver condo rents in 2026, how HOA rules bind tenants, the Denver residential rental license, what is usually included, and questions to ask before signing.
