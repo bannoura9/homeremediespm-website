@@ -18,9 +18,10 @@ Home Remedies Property Management and Real Estate Services is a family-owned com
 - [Home](https://www.homeremediespm.com/): Overview of services, areas served and the free rental analysis.
 
 - [Property Management](https://www.homeremediespm.com/management.html): Full-service residential property management — tenant screening, leasing, rent collection, maintenance, and monthly owner reporting.
+- [Tenants](https://www.homeremediespm.com/tenants.html): Pay rent, request maintenance, and apply for available homes. The Buildium Resident Center opens January 1, 2027. Emergency maintenance: (303) 515-1352, 24/7.
 - [STR Management](https://www.homeremediespm.com/str-management.html): Short-term rental management for Airbnb, VRBO, and Booking.com — multi-platform listing, dynamic pricing, guest communication, and turnovers, for a flat 20% of booking revenue.
 - [Buying & Selling](https://www.homeremediespm.com/buy-sell.html): Residential real estate services for buyers and sellers across the Denver metro.
-- [Pricing](https://www.homeremediespm.com/pricing.html): 10% of monthly rent for full-service management (9% for portfolios of 5+ properties) with no coordination fee on repair jobs of $500 or less and a 10% coordination fee on jobs over $500, 50% of the first month's rent for tenant placement ($975 flat for any placement after the first), 1 month's rent for lease-only, $299 for lease renewals. Agreements run an initial 6-month term, then convert to no-penalty, month-to-month.
+- [Pricing](https://www.homeremediespm.com/pricing.html): 8% of monthly rent for full-service management (7% for portfolios of 5+ properties) with no coordination fee on repair jobs of $300 or less and a 10% coordination fee on jobs over $300, 50% of the first month's rent for tenant placement ($975 flat for any placement after the first), 1 month's rent for lease-only, $299 for lease renewals. Agreements run an initial 6-month term, then convert to no-penalty, month-to-month.
 - [Free Rental Analysis](https://www.homeremediespm.com/free-rental-analysis.html): A real market rent figure for a specific property, based on comparable homes that actually leased. Free and no obligation.
 - [Colorado Landlord Law Checklist](https://www.homeremediespm.com/colorado-landlord-checklist.html): Free printable checklist of Colorado landlord requirements: deposits, late fees, rent increases, eviction notices, disclosures, screening and city licensing.
 
@@ -61,6 +62,13 @@ Full list: [Testimonials](https://www.homeremediespm.com/testimonials.html)
 ## Guides
 
 Owner-focused guides on Colorado landlord law, hiring a property manager, rental economics and north Denver metro rental markets. All articles are written by Nadir Maaiah, licensed Colorado real estate agent and co-owner.
+
+- [Colorado's HB25-1090 Landlord Fee Rules: What's in Force in 2026](https://www.homeremediespm.com/blog-colorado-hb25-1090-landlord-fees.html): What Colorado's HB25-1090 requires of landlords in 2026: one advertised total price, the 2% or $10 markup cap, banned fees, and the Attorney General's November 24, 2025 utility-billing memo.
+- [Mid-Term Furnished Rentals in the Denver Metro: The 30-Day Line](https://www.homeremediespm.com/blog-mid-term-furnished-rentals-denver.html): How furnished stays of 30 days or more differ from short-term rentals and year-long leases in Westminster, Arvada, and Denver, including licenses and DRE Commission Position 12.
+- [Short-Term Rental Rules in Westminster, Arvada, and Denver](https://www.homeremediespm.com/blog-short-term-rental-rules-westminster-arvada-denver.html): Westminster, Arvada, and Denver short-term rental rules compared: day counts, primary residence, fees, permits, and what to re-check on each city site.
+- [Inherited a House in Colorado? Rent It or Sell It](https://www.homeremediespm.com/blog-inherited-house-colorado-rent-or-sell.html): A practical sequence for Colorado heirs: who has authority to act, insurance on a vacant house, existing tenants, local rental licenses, and renting versus selling.
+- [Westminster Rental License and Registration: What Owners File](https://www.homeremediespm.com/blog-westminster-rental-license.html): Westminster's rental license versus registration, the fees on the city page, inspections by property age, and the 50-mile local agent rule.
+- [How to Winterize a Denver-Metro Rental](https://www.homeremediespm.com/blog-winterize-rental-property-colorado.html): Leave the heat on, including in a vacant unit, blow out sprinklers, and drain hose bibs. What to do if the heat or water fails.
 
 - [1031 Exchanges for Colorado Rental Owners: The Basics](https://www.homeremediespm.com/blog-1031-exchange-colorado.html): Deferring capital gains by exchanging one investment property for another. The deadlines, the qualified intermediary requirement, and the mistakes that disqualify an exchange.
 - [Can You Legally Rent Out That Garage Conversion?](https://www.homeremediespm.com/blog-adu-garage-conversion-rental-colorado.html): Colorado dropped its ADU owner-occupancy requirement in 2024, but Westminster and Arvada still cap size and bedroom count. What's legal, what needs a permit, and why an unpermitted garage conversion is a real liability.
@@ -121,7 +129,9 @@ Owner-focused guides on Colorado landlord law, hiring a property manager, rental
 
 ## For renters
 
-Guides for people looking for a rental home in the Denver metro. Home Remedies lists its available homes on the major rental sites and keeps a waiting list through the contact page.
+Current residents pay rent, request maintenance, and reach the 24/7 emergency line from the tenants page. The Buildium Resident Center opens January 1, 2027. Available homes are listed on the properties page. Guides below are for people looking for a rental home in the Denver metro.
+
+- [Tenants](https://www.homeremediespm.com/tenants.html): Pay rent, submit a maintenance request, and apply for a home. Applicants may provide a Colorado portable tenant screening report that meets the state's requirements.
 
 - [Rental Homes in Arvada & Westminster, CO: A 2026 Renter's Guide](https://www.homeremediespm.com/blog-rental-homes-arvada-westminster.html): What houses, townhomes and condos rent for in Arvada and Westminster in 2026 by home type, the neighborhoods renters look at, Colorado's caps on application fees, income requirements, security deposits and pet fees, and how to apply.
 - [Renting a Condo in Denver: What to Know Before You Sign](https://www.homeremediespm.com/blog-denver-condo-rentals.html): Denver condo rents in 2026, how HOA rules bind tenants, the Denver residential rental license, what is usually included, and questions to ask before signing.
